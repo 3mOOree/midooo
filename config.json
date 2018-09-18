@@ -2,6 +2,6 @@
   "token" : "Bot token goes here", 
   "ms" : 1500,
   "roleToDisco" : ["disco"], 
-  "prefix" : "$",
+  "prefix" : "$$",
   "allowedUsers" : ["460017803030953986" , "449567019243798528"] 
 }
