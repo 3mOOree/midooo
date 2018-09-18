@@ -96,7 +96,7 @@ client.on('message', message=> {
 47
 
 client.on('message', message => {
-   if (message.content === "=id") {
+   if (message.content === "$id") {
    let embed = new Discord.RichEmbed()
   .setColor("RANDOM")
   .setThumbnail(message.author.avatarURL)
@@ -542,7 +542,7 @@ function play(guild, song) {
 
 
 client.on('message', message => {
-    if (message.content === '=help-m') {
+    if (message.content === '$help-m') {
         let helpEmbed = new Discord.RichEmbed()
         .setTitle('**أوامر الميوزك**')
         .setDescription('** ( $ ) برفكس البوت**')
