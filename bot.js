@@ -7,7 +7,7 @@ const prefix = '$'
 
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
-client.user.setGame(`$help-m For Help!`,"http://twitch.tv/Mohamed192837465")
+client.user.setGame(`صيانه...`,"http://twitch.tv/Mohamed192837465")
   console.log('')
   console.log('')
   console.log('╔[═════════════════════════════════════════════════════════════════]╗')
