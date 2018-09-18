@@ -96,7 +96,7 @@ client.on('message', message=> {
 47
 
 client.on('message', message => {
-   if (message.content === "$id") {
+   if (message.content === "$Myid") {
    let embed = new Discord.RichEmbed()
   .setColor("RANDOM")
   .setThumbnail(message.author.avatarURL)
