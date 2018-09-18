@@ -1,13 +1,13 @@
 const Discord = require("discord.js");
 const client = new Discord.Client();
-const prefix = '$'
+const prefix = '$$'
 
 
 
 
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
-client.user.setGame(`صيانه...`,"http://twitch.tv/Mohamed192837465")
+client.user.setGame(`Nothing...`,"http://twitch.tv/Mohamed192837465")
   console.log('')
   console.log('')
   console.log('╔[═════════════════════════════════════════════════════════════════]╗')
@@ -96,7 +96,7 @@ client.on('message', message=> {
 47
 
 client.on('message', message => {
-   if (message.content === "$id") {
+   if (message.content === "$$id") {
    let embed = new Discord.RichEmbed()
   .setColor("RANDOM")
   .setThumbnail(message.author.avatarURL)
@@ -161,7 +161,7 @@ client.on('message', message => {
 client.on('message' , message => {;
   if(message.author.bot) return;
 
-    if(message.content.startsWith('$xo')) {
+    if(message.content.startsWith('$$xo')) {
  let array_of_mentions = message.mentions.users.array();
   let symbols = [':o:', ':heavy_multiplication_x:'] 
   var grid_message;
