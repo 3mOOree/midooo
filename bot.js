@@ -429,6 +429,7 @@ const roles = config.roleToDisco;
 30
 client.on('message', message => {
    if(!message.channel.guild) return;
+var prefix = "$";	
 if(message.content.startsWith(prefix + 'bc')) {
 if(!message.channel.guild) return message.channel.send('**هذا الأمر فقط للسيرفرات**').then(m => m.delete(5000));
 if(!message.member.hasPermission('ADMINISTRATOR')) return      message.channel.send('**للأسف لا تمتلك صلاحية** `ADMINISTRATOR`' );
@@ -803,6 +804,59 @@ client.on('message', message => {
 			} // حقوق الفا كوودز Alpha Codes.
 		}
 	}
+});
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+client.on('message', async message => {
+    let date = moment().format('Do MMMM YYYY , hh:mm');
+    let User = message.mentions.users.first();
+    let Reason = message.content.split(" ").slice(3).join(" ");
+    let messageArray = message.content.split(" ");
+    let time = messageArray[2];
+    if(message.content.startsWith("$ban")) {
+       if(!message.guild.member(message.author).hasPermission("BAN_MEMBERS")) return message.channel.send("**لاتمتلك صلاحيات**");
+       if(!User) message.channel.send("**منشن شخص**");
+       if(User.id === client.user.id) return message.channel.send("**لاتستطيع حظري**");
+       if(User.id === message.guild.owner.id) return message.channel.send("**لا استطيع ان احظر الادارة**");
+       if(!time) return message.channel.send("**ضع الوقت الذي تريده**");
+       if(!time.match(/[1-7][s,m,h,d,w]/g)) return message.channel.send('**ضع وقت حقيقي**');
+       if(!Reason) message.channel.send("**ضع سبب**");
+       let banEmbed = new Discord.RichEmbed()
+       .setAuthor(`You have been banned from ${message.guild.name} !`)
+       .setThumbnail(message.guild.iconURL || message.guild.avatarURL)
+       .addField('- تم حظره من قبل: ',message.author.tag,true)
+       .addField('- السبب:',Reason,true)
+       .addField('- الوقت الذي تبند فيه:',date,true)
+       .addField('- وقت الحظر:',time,true)
+       .setFooter(message.author.tag,message.author.avatarURL);
+       User.sendMessage({embed: banEmbed}).then(() => message.guild.member(User).ban({reason: Reason}))
+       .then(() => message.channel.send(`**:white_check_mark: ${User} banned from the server ! :airplane: **`)).then(() => { setTimeout(() => {
+           message.guild.unban(User);
+       }, message(time));
+    });
+   } 
 });
 
 client.login(process.env.BOT_TOKEN);
