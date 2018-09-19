@@ -905,4 +905,41 @@ const command = args.shift().toLowerCase();
   .catch(console.error);
 }
 });
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+
+var prefix = "$"
+
+
+client.on('message', async message => {
+if(message.author.bot) return;
+if (message.channel.guild) {
+if (message.content.startsWith(prefix + `Google`)) {
+            const textQuery = message.content.split(' ').slice(1).join(' ');
+        const rebel = encode(message.content.split(' ').slice(1).join(' '));
+        const url = `https://lmgtfy.com/?q=${rebel}`;
+
+        if (!rebel) return message.channel.send(`من فضلك أكتب البحث , مثآل : \`${prefix}Lmgtfy How to create a Discord server\`.`);
+        else message.channel.send(`"${textQuery}"\n**<${url}>**`);
+}}});
+
 client.login(process.env.BOT_TOKEN);
