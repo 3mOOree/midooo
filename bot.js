@@ -829,13 +829,14 @@ client.on('message', message => {
 21
 22
 23
+
 client.on('message', async message => {
     let date = moment().format('Do MMMM YYYY , hh:mm');
     let User = message.mentions.users.first();
     let Reason = message.content.split(" ").slice(3).join(" ");
     let messageArray = message.content.split(" ");
     let time = messageArray[2];
-    if(message.content.startsWith("$ban")) {
+    if(message.content.startsWith("-tempban")) {
        if(!message.guild.member(message.author).hasPermission("BAN_MEMBERS")) return message.channel.send("**لاتمتلك صلاحيات**");
        if(!User) message.channel.send("**منشن شخص**");
        if(User.id === client.user.id) return message.channel.send("**لاتستطيع حظري**");
