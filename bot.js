@@ -428,7 +428,7 @@ const roles = config.roleToDisco;
 29
 30
 client.on('message', message => {
-    var prefix = "f!";
+    var prefix = "m$";
     
         if (message.author.id === client.user.id) return;
         if (message.guild) {
