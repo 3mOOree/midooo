@@ -428,52 +428,33 @@ const roles = config.roleToDisco;
 29
 30
 client.on('message', message => {
-   if(!message.channel.guild) return;
-var prefix = "$";	
-if(message.content.startsWith(prefix + 'bc')) {
-if(!message.channel.guild) return message.channel.send('**هذا الأمر فقط للسيرفرات**').then(m => m.delete(5000));
-if(!message.member.hasPermission('ADMINISTRATOR')) return      message.channel.send('**للأسف لا تمتلك صلاحية** `ADMINISTRATOR`' );
-let args = message.content.split(" ").join(" ").slice(2 + prefix.length);
-let BcList = new Discord.RichEmbed()
-.setThumbnail(message.author.avatarURL)
-.setAuthor(`محتوي الرساله ${args}`)
-.setDescription(`برودكاست بـ امبد 📝\nبرودكاست بدون امبد✏ \nلديك دقيقه للأختيار قبل الغاء البرودكاست`)
-if (!args) return message.reply('**يجب عليك كتابة كلمة او جملة لإرسال البرودكاست**');message.channel.send(BcList).then(msg => {
-msg.react('📝')
-.then(() => msg.react('✏'))
-.then(() =>msg.react('📝'))
- 
-let EmbedBcFilter = (reaction, user) => reaction.emoji.name === '📝' && user.id === message.author.id;
-let NormalBcFilter = (reaction, user) => reaction.emoji.name === '✏' && user.id === message.author.id;
- 
-let EmbedBc = msg.createReactionCollector(EmbedBcFilter, { time: 60000 });
-let NormalBc = msg.createReactionCollector(NormalBcFilter, { time: 60000 });
- 
-EmbedBc.on("collect", r => {
-message.channel.send(`:ballot_box_with_check: تم ارسال الرساله بنجاح`).then(m => m.delete(5000));
-message.guild.members.forEach(m => {
-var bc = new
-Discord.RichEmbed()
-.setColor('RANDOM')
-  .setTitle('`-Broadcast-`')
-.setAuthor(`Server : ${message.guild.name}`)
-.setFooter(`Sender : ${message.author.username}`)
-.setDescription(`Message : ${args}`)
-.setThumbnail(message.author.avatarURL)
-m.send({ embed: bc })
-msg.delete();
-})
-})
-NormalBc.on("collect", r => {
-  message.channel.send(`:ballot_box_with_check: تم ارسال الرساله بنجاح`).then(m => m.delete(5000));
-message.guild.members.forEach(m => {
-m.send(args);
-msg.delete();
-})
-})
-})
-}
-});
+    var prefix = "$bc";
+    
+        if (message.author.id === client.user.id) return;
+        if (message.guild) {
+       let embed = new Discord.RichEmbed()
+        let args = message.content.split(' ').slice(1).join(' ');
+    if(message.content.split(' ')[0] == prefix + 'bc') {
+        if (!args[1]) {
+    message.channel.send("**M$bc <message>**");
+    return;
+    }
+            message.guild.members.forEach(m => {
+       if(!message.member.hasPermission('ADMINISTRATOR')) return;
+                var bc = new Discord.RichEmbed()
+                .addField('» السيرفر :', `${message.guild.name}`)
+                .addField('» المرسل : ', `${message.author.username}#${message.author.discriminator}`)
+                .addField(' » الرسالة : ', args)
+                .setColor('#ff0000')
+                // m.send(`[${m}]`);
+                m.send(`${m}`,{embed: bc});
+            });
+        }
+        } else {
+            return;
+        }
+    });
+    
 
 1
 2
@@ -830,34 +811,100 @@ client.on('message', message => {
 22
 23
 
-client.on('message', async message => {
-    let date = moment().format('Do MMMM YYYY , hh:mm');
-    let User = message.mentions.users.first();
-    let Reason = message.content.split(" ").slice(3).join(" ");
-    let messageArray = message.content.split(" ");
-    let time = messageArray[2];
-    if(message.content.startsWith("-tempban")) {
-       if(!message.guild.member(message.author).hasPermission("BAN_MEMBERS")) return message.channel.send("**لاتمتلك صلاحيات**");
-       if(!User) message.channel.send("**منشن شخص**");
-       if(User.id === client.user.id) return message.channel.send("**لاتستطيع حظري**");
-       if(User.id === message.guild.owner.id) return message.channel.send("**لا استطيع ان احظر الادارة**");
-       if(!time) return message.channel.send("**ضع الوقت الذي تريده**");
-       if(!time.match(/[1-7][s,m,h,d,w]/g)) return message.channel.send('**ضع وقت حقيقي**');
-       if(!Reason) message.channel.send("**ضع سبب**");
-       let banEmbed = new Discord.RichEmbed()
-       .setAuthor(`You have been banned from ${message.guild.name} !`)
-       .setThumbnail(message.guild.iconURL || message.guild.avatarURL)
-       .addField('- تم حظره من قبل: ',message.author.tag,true)
-       .addField('- السبب:',Reason,true)
-       .addField('- الوقت الذي تبند فيه:',date,true)
-       .addField('- وقت الحظر:',time,true)
-       .setFooter(message.author.tag,message.author.avatarURL);
-       User.sendMessage({embed: banEmbed}).then(() => message.guild.member(User).ban({reason: Reason}))
-       .then(() => message.channel.send(`**:white_check_mark: ${User} banned from the server ! :airplane: **`)).then(() => { setTimeout(() => {
-           message.guild.unban(User);
-       }, message(time));
+client.on("message", async message => {
+  if(message.author.bot) return;
+  if(message.channel.type === "dm") return;
+
+  let prefix = "$";
+  let messageArray = message.content.split (" ");
+  let cmd = messageArray[0];
+  let args = messageArray.slice(1);
+
+
+
+    if(cmd === `${prefix}kick`){
+
+
+
+      let kUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
+      if(!kUser) return message.channel.send("فين العضو ؟");
+      let kReason = args.join(" ").slice(22);
+      if(!message.member.hasPermission("MANAGE_CHANNELS")) return message.channel.send("ما عندك برمشن");
+      if(kUser.hasPermission("MANAGE_CHANNELS")) return message.channel.send("ما تقدر تسوي كيك للأدمين")
+
+      let kickEmbed = new Discord.RichEmbed()
+      .setDescription("~Kick~")
+      .setColor("#e56b00")
+      .addField("Kicked User", `${kUser} with ID ${kUser.id}`)
+      .addField("Kicked By", `<@${message.author.id}> with the id ${message.author.id}`)
+      .addField("Kicked In", message.channel)
+      .addField("Time", message.createdAt)
+      .addField("Reason", kReason);
+
+      let kickChannel = message.guild.channels.find('name', 'kick-ban');
+      if(!kickChannel) return message.channel.send("لم اجد روم ال kick-ban");
+
+      message.guild.member(kUser).kick(kReason)
+      kickChannel.send(kickEmbed);
+    }
     });
-   } 
+
+
+
+
+client.on("message", async message => {
+      if(message.author.bot) return;
+      if(message.channel.type === "dm") return;
+
+      let prefix = "-";
+      let messageArray = message.content.split (" ");
+      let cmd = messageArray[0];
+      let args = messageArray.slice(1);
+
+
+
+        if(cmd === `${prefix}ban`){
+
+
+
+          let kUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
+          if(!kUser) return message.channel.send("فين العضو ؟");
+          let kReason = args.join(" ").slice(22);
+          if(!message.member.hasPermission("MANAGE_CHANNELS")) return message.channel.send("ما عندك برمشن");
+          if(kUser.hasPermission("MANAGE_CHANNELS")) return message.channel.send("ما تقدر تسوي بان للأدمين")
+
+          let banEmbed = new Discord.RichEmbed()
+          .setDescription("~Ban~")
+          .setColor("#8e0505")
+          .addField("Banned User", `${bUser} with ID ${bUser.id}`)
+          .addField("Banned By", `<@${message.author.id}> with the id ${message.author.id}`)
+          .addField("Banned In", message.channel)
+          .addField("Time", message.createdAt)
+          .addField("Reason", kReason);
+
+          let banChannel = message.guild.channels.find('name', 'kick-ban');
+          if(!banChannel) return message.channel.send("لم اجد روم kick-ban");
+
+          message.guild.member(bUser).kick(bReason)
+          banChannel.send(banEmbed);
+        }
+        });
+
+var prefix = "$"
+
+client.on('message', message => {
+    const args = message.content.slice(prefix.length).trim().split(/ +/g);
+const command = args.shift().toLowerCase();
+    if (command === "banlist") {
+        message.delete(5000)
+         if(!message.guild.member(client.user).hasPermission("ADMINISTRATOR")) return message.reply("Error : \` I Dont Have ADMINISTRATOR Permission\`").then(message => message.delete(5000));
+        if(!message.member.hasPermission('ADMINISTRATOR')) return;
+        if(!message.channel.guild) return;
+        message.guild.fetchBans()
+        .then(bans => message.channel.send(`\`${bans.size}\` ***: عدد الاشخاص المحظورين من السيرفر ***`)).then(message => message.delete(5000))
+
+  .catch(console.error);
+}
 });
 
 client.login(process.env.BOT_TOKEN);
