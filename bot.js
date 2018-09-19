@@ -856,7 +856,7 @@ client.on("message", async message => {
       if(message.author.bot) return;
       if(message.channel.type === "dm") return;
 
-      let prefix = "-";
+      let prefix = "$";
       let messageArray = message.content.split (" ");
       let cmd = messageArray[0];
       let args = messageArray.slice(1);
@@ -906,5 +906,4 @@ const command = args.shift().toLowerCase();
   .catch(console.error);
 }
 });
-
 client.login(process.env.BOT_TOKEN);
