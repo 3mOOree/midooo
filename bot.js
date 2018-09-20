@@ -95,7 +95,7 @@ client.on('message', message=> {
 47
 
 client.on('message', message => {
-   if (message.content === "$$id") {
+   if (message.content === "$id") {
    let embed = new Discord.RichEmbed()
   .setColor("RANDOM")
   .setThumbnail(message.author.avatarURL)
@@ -160,7 +160,7 @@ client.on('message', message => {
 client.on('message' , message => {;
   if(message.author.bot) return;
 
-    if(message.content.startsWith('$$xo')) {
+    if(message.content.startsWith('$xo')) {
  let array_of_mentions = message.mentions.users.array();
   let symbols = [':o:', ':heavy_multiplication_x:'] 
   var grid_message;
@@ -911,6 +911,8 @@ client.on('message', function(message) {
     }
 })
  
+var prefix = "$";
+
 client.on('message', message => {
     if (message.content.startsWith(prefix + 'clear')) {
       if (!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply(`ماعندك هذا البرمشن[*MANAGE_MESSAGES*] `).catch(console.error);
