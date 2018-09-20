@@ -34,3 +34,5 @@
   },
   "homepage": "https://github.com/synicalsyntax/discord.js-heroku#readme"
 }
+
+"google-translate-api": "^2.3.0",
