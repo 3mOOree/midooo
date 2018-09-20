@@ -927,19 +927,17 @@ const command = args.shift().toLowerCase();
 19
 20
 
-var prefix = "$"
+client.on('message', message => {
+    var prefix ="-";
+ let args = message.content.split(' ').slice(1);
+    if(message.content.startsWith(prefix + 'google')) {
+    const input = args.join(' ');
 
+google({ query: input, disableConsole: true }).then(results => {
+    return message.channel.send(`\n\n**Title**: ${results[0].title}\n***Link***: ${results[0].link}\nDescription: ${results[0].snippet}`);
+}).catch(error => {
+    if (error) throw error;
+});
 
-client.on('message', async message => {
-if(message.author.bot) return;
-if (message.channel.guild) {
-if (message.content.startsWith(prefix + `Google`)) {
-            const textQuery = message.content.split(' ').slice(1).join(' ');
-        const rebel = encode(message.content.split(' ').slice(1).join(' '));
-        const url = `https://lmgtfy.com/?q=${rebel}`;
-
-        if (!rebel) return message.channel.send(`من فضلك أكتب البحث , مثآل : \`${prefix}Lmgtfy How to create a Discord server\`.`);
-        else message.channel.send(`"${textQuery}"\n**<${url}>**`);
-}}});
-
+}});
 client.login(process.env.BOT_TOKEN);
