@@ -911,7 +911,8 @@ client.on('message', function(message) {
     }
 })
  
-var prefix = "$";
+
+var prefix = "$"
 
 client.on('message', message => {
     if (message.content.startsWith(prefix + 'clear')) {
