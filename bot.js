@@ -889,33 +889,60 @@ client.on("message", async message => {
         }
         });
 
-client.on('message', function(message) {
-    if (!message.member.hasPermissions(['ADMINISTRATOR'])){
-            let command = message.content.split(" ")[0];
-        if(message.content.includes('discord.gg')){
-        message.reply (' ')
-           if(!message.channel.guild) return message.reply('** This command only for servers**');
-     message.member.addRole(message.guild.roles.find('name', 'Muted'));
-    const embed500 = new Discord.RichEmbed()
-      .setTitle(":x: | تمت معاقبتك")
-            .addField(`** لقد قمت بمخالفة قوانين السيرفر من خلال نشر سيرفرات اخرى  **` , `**ملاحظة  : إن كآن هذآ الميوت عن طريق الخطأ تكلم مع الادآرة**`)
-      .addField(`by`,`alpha codes`)
-            .setColor("c91616")
-            .setThumbnail(`${message.author.avatarURL}`)
-            .setAuthor(message.author.username, message.author.avatarURL)
-        .setFooter(`${message.guild.name} Server`)
-     message.channel.send(embed500)
-   
-       
-    }
-    }
-})
- 
+const fs = require("fs"); 
+const ms = require("ms");
 
-var prefix = "$"
+const alphacodes = [
+  "#credit",
+  "#profile",
+  "#rep",
+  "#top",
+  "!level",
+  "%!id",
+  "!فكك",
+  "!صراحه",
+  "!xo",
+  "!كت تويت",
+  "!invites",
+  "!top",
+  "!help",
+  "!stop",
+  "!play",
+  "!skip"
 
+]
 client.on('message', message => {
-    if (message.content.startsWith(prefix + 'clear')) {
+var mute = message.guild.roles.find("name", "mute");
+var warn = message.guild.roles.find("name", "warn");
+  if(alphacodes.some(word => message.content.includes(word))) {
+  if(message.channel.id !== '463274632955428865') return;
+  if (message.author.bot) return;
+  
+  if(message.member.roles.has()) return;
+  if(!message.member.roles.has()) {
+  message.member.addRole(warn)
+  message.reply(`**تم اعطائك تحذير لانك استخدمت اوامر في الشات😠**`) 
+  }
+  
+  if(message.member.roles.has(warn.id)) {
+      message.member.addRole(mute)
+      message.member.removeRole(warn)
+      let mutetime = "1h";
+    
+    message.reply(`**تم اعطائك ميوت كتابي لمدة 1 ساعة 🤐**!`);
+  
+      setTimeout(function(){
+      message.member.removeRole(mute)
+      message.reply(`تم الغاء الميوت عنك!`)
+    }, ms(mutetime))    
+     
+  }
+  
+  }
+  })
+ 
+client.on('message', message => {
+    if (message.content.startsWith(prefix + '$clear')) {
       if (!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply(`ماعندك هذا البرمشن[*MANAGE_MESSAGES*] `).catch(console.error);
   message.delete()
   if(!message.channel.guild) return;
