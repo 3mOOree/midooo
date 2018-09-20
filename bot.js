@@ -214,7 +214,7 @@ client.on('message' , message => {;
     .catch(console.error);
   }
   else {
-    message.reply(`_مهلا مهلا_ :anger: \`(استعمل هذا: ${prefix}xo @player1 @player2)\``)
+    message.reply(`_مهلا مهلا_ :anger: \`(استعمل هذا: $${prefix}xo @player1 @player2)\``)
     .then(console.log("Successful error reply"))
     .catch(console.error);
   }
