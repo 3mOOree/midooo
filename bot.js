@@ -1186,4 +1186,7 @@ if (message.content.startsWith(prefix + 'trans')) {
     }
 }
 });
+const translate = require('google-translate-api');  
+
+
 client.login(process.env.BOT_TOKEN);
