@@ -1159,7 +1159,7 @@ if (message.content.startsWith(prefix + 'trans')) {
 
         if (args.length === undefined) {
 
-            return message.channel.send("**ترجمة الكتابة.**\استعمل: `-translate <الكلمة لتبي> <االغة>`");
+            return message.channel.send("**ترجمة الكتابة.**\استعمل: `$translate <الكلمة لتبي> <االغة>`");
 
         } else {
 
