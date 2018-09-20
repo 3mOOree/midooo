@@ -1489,43 +1489,4 @@ client.on("message", async message => {
   }
 });
 
-var prefix = "$"
-
-client.on('message', message => {
-if (!points[message.author.id]) points[message.author.id] = {
-    points: 50,
-  };
-if (message.content.startsWith(prefix + 'فكك')) { 
-    if(!message.channel.guild) return message.reply('**هذا الأمر للسيرفرات فقط**').then(m => m.delete(3000));
-
-const type = require('./fakk/fakk.json'); 
-const item = type[Math.floor(Math.random() * type.length)]; 
-const answer = item.answer 
-const filter = response => { 
-    return item.answers.some(answer => answer.toLowerCase() === response.content.toLowerCase());
-};
-message.channel.send('**لديك 15 ثانيه لتفكك الكلمه **').then(msg => {
-    let embed = new Discord.RichEmbed()
-    .setColor('#000000')
-    .setFooter("فكك  | LeGeNd GaMerZ", 'https://images-ext-1.discordapp.net/external/jnFppV-QFGdK_kq7srDWpBUfhdNVzXDOgqPXDlAWeCg/%3Fsize%3D2048/https/cdn.discordapp.com/avatars/469918917385519115/7c1c75da360cc4168b4e56a92abab5b9.png?width=473&height=473')
-    .setDescription(`**قم بكتابه الكلمه مفككه : ${item.type}**`)
-
-    msg.channel.sendEmbed(embed).then(() => {
-        message.channel.awaitMessages(filter, { maxMatches: 1, time: 15000, errors: ['time'] })
-        .then((collected) => {
-        message.channel.send(`${collected.first().author} ✅ **الاجابه صحيحه**`); 
-
-        console.log(`[Typing] ${collected.first().author} typed the word.`);
-            let won = collected.first().author; 
-            points[won.id].points++;
-          })
-          .catch(collected => { 
-            message.channel.send(`:x: **ماحد قال الاجابه الصحيحه**`);
-            console.log(`[Typing] ماحد فكك الكلمه `);
-          })
-        })
-    })
-}
-});
-
 client.login(process.env.BOT_TOKEN);
