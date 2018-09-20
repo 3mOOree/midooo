@@ -1,6 +1,6 @@
 const Discord = require("discord.js");
 const client = new Discord.Client();
-
+const translate = require('google-translate-api');
 
 
 
@@ -29,7 +29,7 @@ client.user.setGame(`Nothing...`,"http://twitch.tv/Mohamed192837465")
   console.log('')
   console.log('')
 });
-const translate = require('google-translate-api');
+
 
 client.on('message', msg => {
   if (msg.content === 'ping') {
