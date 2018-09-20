@@ -889,22 +889,52 @@ client.on("message", async message => {
         }
         });
 
-var prefix = "$"
-
+client.on('message', function(message) {
+    if (!message.member.hasPermissions(['ADMINISTRATOR'])){
+            let command = message.content.split(" ")[0];
+        if(message.content.includes('discord.gg')){
+        message.reply (' ')
+           if(!message.channel.guild) return message.reply('** This command only for servers**');
+     message.member.addRole(message.guild.roles.find('name', 'Muted'));
+    const embed500 = new Discord.RichEmbed()
+      .setTitle(":x: | تمت معاقبتك")
+            .addField(`** لقد قمت بمخالفة قوانين السيرفر من خلال نشر سيرفرات اخرى  **` , `**ملاحظة  : إن كآن هذآ الميوت عن طريق الخطأ تكلم مع الادآرة**`)
+      .addField(`by`,`alpha codes`)
+            .setColor("c91616")
+            .setThumbnail(`${message.author.avatarURL}`)
+            .setAuthor(message.author.username, message.author.avatarURL)
+        .setFooter(`${message.guild.name} Server`)
+     message.channel.send(embed500)
+   
+       
+    }
+    }
+})
+ 
 client.on('message', message => {
-    const args = message.content.slice(prefix.length).trim().split(/ +/g);
-const command = args.shift().toLowerCase();
-    if (command === "banlist") {
-        message.delete(5000)
-         if(!message.guild.member(client.user).hasPermission("ADMINISTRATOR")) return message.reply("Error : \` I Dont Have ADMINISTRATOR Permission\`").then(message => message.delete(5000));
-        if(!message.member.hasPermission('ADMINISTRATOR')) return;
-        if(!message.channel.guild) return;
-        message.guild.fetchBans()
-        .then(bans => message.channel.send(`\`${bans.size}\` ***: عدد الاشخاص المحظورين من السيرفر ***`)).then(message => message.delete(5000))
-
-  .catch(console.error);
-}
-});
+    if (message.content.startsWith(prefix + 'clear')) {
+      if (!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply(`ماعندك هذا البرمشن[*MANAGE_MESSAGES*] `).catch(console.error);
+  message.delete()
+  if(!message.channel.guild) return;
+  let args = message.content.split(" ").slice(1);
+ 
+  const messagecount = parseInt(args.join(' '));
+ 
+  message.channel.fetchMessages({
+ 
+  limit: messagecount
+ 
+  }).then(messages => message.channel.bulkDelete(messages));
+  message.channel.sendMessage("", {embed: {
+    title: "``✏️✅ تــم مسح الشات ``",
+    color: 0x06DF00,
+    footer: {
+   
+    }
+    }}).then(msg => {msg.delete(3000)});
+  };
+ 
+  });
 
 1
 2
@@ -927,17 +957,5 @@ const command = args.shift().toLowerCase();
 19
 20
 
-client.on('message', message => {
-    var prefix ="-";
- let args = message.content.split(' ').slice(1);
-    if(message.content.startsWith(prefix + 'google')) {
-    const input = args.join(' ');
 
-google({ query: input, disableConsole: true }).then(results => {
-    return message.channel.send(`\n\n**Title**: ${results[0].title}\n***Link***: ${results[0].link}\nDescription: ${results[0].snippet}`);
-}).catch(error => {
-    if (error) throw error;
-});
-
-}});
 client.login(process.env.BOT_TOKEN);
