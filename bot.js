@@ -889,57 +889,59 @@ client.on("message", async message => {
         }
         });
 
-const fs = require("fs"); 
-const ms = require("ms");
+	client.on('message', message => {
+    var args = message.content.split(/[ ]+/)
+    if(message.content.includes('gmail')){
+        message.delete()
+    return message.reply(`** لايمكنك نشر الجيمل  هنا **`)
+    }
+});
 
-const alphacodes = [
-  "#credit",
-  "#profile",
-  "#rep",
-  "#top",
-  "!level",
-  "%!id",
-  "!فكك",
-  "!صراحه",
-  "!xo",
-  "!كت تويت",
-  "!invites",
-  "!top",
-  "!help",
-  "!stop",
-  "!play",
-  "!skip"
-
-]
 client.on('message', message => {
-var mute = message.guild.roles.find("name", "mute");
-var warn = message.guild.roles.find("name", "warn");
-  if(alphacodes.some(word => message.content.includes(word))) {
-  if(message.channel.id !== '463274632955428865') return;
-  if (message.author.bot) return;
-  
-  if(message.member.roles.has()) return;
-  if(!message.member.roles.has()) {
-  message.member.addRole(warn)
-  message.reply(`**تم اعطائك تحذير لانك استخدمت اوامر في الشات😠**`) 
-  }
-  
-  if(message.member.roles.has(warn.id)) {
-      message.member.addRole(mute)
-      message.member.removeRole(warn)
-      let mutetime = "1h";
-    
-    message.reply(`**تم اعطائك ميوت كتابي لمدة 1 ساعة 🤐**!`);
-  
-      setTimeout(function(){
-      message.member.removeRole(mute)
-      message.reply(`تم الغاء الميوت عنك!`)
-    }, ms(mutetime))    
-     
-  }
-  
-  }
-  })
+    var args = message.content.split(/[ ]+/)
+    if(message.content.includes('snapchat')){
+        message.delete()
+    return message.reply(`** لايمكنك نشر سناب شات  هنا **`)
+    }
+});
+
+
+client.on('message', message => {
+    var args = message.content.split(/[ ]+/)
+    if(message.content.includes('instagram')){
+        message.delete()
+    return message.reply(`** لايمكنك نشر الانستقرام هنا **`)
+    }
+});
+
+
+client.on('message', message => {
+    var args = message.content.split(/[ ]+/)
+    if(message.content.includes('twitter')){
+        message.delete()
+    return message.reply(`** لايمكنك  نشر التويتر هنا **`)
+    }
+});
+
+
+client.on('message', message => {
+    var args = message.content.split(/[ ]+/)
+    if(message.content.includes('facebook')){
+        message.delete()
+    return message.reply(`** لايمكنك نشر الفيس بوك هنا **`)
+    }
+});
+
+
+
+client.on('message', message => {
+    var args = message.content.split(/[ ]+/)
+    if(message.content.includes('youtube')){
+        message.delete()
+    return message.reply(`** لايمكنك نشر اروابط في هذا اسرفر **`)
+    }
+
+});
  
 
 1
