@@ -943,7 +943,69 @@ client.on('message', message => {
 
 });
  
+client.on('message', m3a4x => {
+  if (m3a4x.content.startsWith('$mute')) {
+if (!m3a4x.member.hasPermission("MOVE_MEMBERS")) return m3a4x.channel.send("**انت لا تمتلك الخاصيه المطلوبه** | ❎ ");
+let men = m3a4x.mentions.users.first()
+let mas = m3a4x.author
+if(!men) return m3a4x.channel.send('`منشن الشخص الذي تريد ان تعطيه ميوت كتابي` ');
+m3a4x.guild.channels.forEach(c => {
+c.overwritePermissions(men.id, {
+          SEND_MESSAGES: false
+})
+    })
+const embed = new Discord.RichEmbed()
+.setColor("#36393e")
+.setDescription(`**
+ <@${men.id}>
+لقد تم اعطائك ميوت كتابي
+بواسطة : <@${m3a4x.author.id}> **`)
+.setThumbnail("https://cdn.discordapp.com/attachments/408952032112803850/452090205793681419/fd684707fc14f41663f15ecebf089f06.png")
+          
+client.users.get(men.id).sendEmbed(embed)
+const Embed11 = new Discord.RichEmbed()
+.setColor("#36393e")
+.setAuthor(m3a4x.guild.name, m3a4x.guild.iconURL)
+.setDescription(`          <@${men.id}>
+لقد تم اعطائه الميوت الكتابي بنجاح
+بواسطة : <@${m3a4x.author.id}> `)
+.setThumbnail("https://cdn.discordapp.com/attachments/408952032112803850/452090205793681419/fd684707fc14f41663f15ecebf089f06.png")
+m3a4x.channel.sendEmbed(Embed11).then(m3a4x => {m3a4x.delete(20000)})
+    }
+})
 
+
+client.on('message', m3a4x => {
+  if (m3a4x.content.startsWith('$unmute')) {
+if (!m3a4x.member.hasPermission("MOVE_MEMBERS")) return m3a4x.channel.send("**انت لا تمتلك الخاصيه المطلوبه** | ❎ ");
+ let men = m3a4x.mentions.users.first()
+ let mas = m3a4x.author
+ if(!men) return m3a4x.channel.send('`منشن الشخص الذي تريد فك الميوت عنه `');
+ m3a4x.guild.channels.forEach(c => {
+ c.overwritePermissions(men.id, {
+         SEND_MESSAGES: true
+         })
+    })
+const embed = new Discord.RichEmbed()
+.setColor("#36393e")
+.setDescription(`**
+ <@${men.id}>
+تم فك الميوت الكتابي 
+بواسطة : <@${m3a4x.author.id}> **`)
+.setThumbnail("https://cdn.discordapp.com/attachments/408952032112803850/452093541003296788/start-button-hi.png")
+          
+client.users.get(men.id).sendEmbed(embed)
+const Embed11 = new Discord.RichEmbed()
+.setColor("#36393e")
+.setAuthor(m3a4x.guild.name, m3a4x.guild.iconURL)
+.setDescription(`          <@${men.id}>
+تم فك الميوت الكتابي 
+بواسطة : <@${m3a4x.author.id}>
+`)
+.setThumbnail("https://cdn.discordapp.com/attachments/408952032112803850/452093541003296788/start-button-hi.png")
+m3a4x.channel.sendEmbed(Embed11).then(m3a4x => {m3a4x.delete(20000)})
+    }
+})
 1
 2
 3
