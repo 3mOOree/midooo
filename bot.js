@@ -987,7 +987,7 @@ client.on('message', message => {
 19
 20
 
-ar prefix = "$"
+var prefix = "$"
 
 client.on('message', message => {
   if (message.author.bot) return;
