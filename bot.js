@@ -1057,4 +1057,32 @@ if (command == "embed") {
 
 });
 
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+\\\\\\\\\\\\\\\\\\\\\\\\ > M3a4x < \\\\\\\\\\\\\\\\\\\\\\\\
+ client.on('message', message => {
+        var  user = message.mentions.users.first() || message.author;
+    if (message.content.startsWith("$avatar")) {
+message.channel.send(`This avatar For ${user} link : ${user.avatarURL}`);
+}
+});
+\\\\\\\\\\\\\\\\\\\\\\\\ > M3a4x < \\\\\\\\\\\\\\\\\\\\\\\\
 client.login(process.env.BOT_TOKEN);
