@@ -838,7 +838,7 @@ if (command == "embed") {
         .setTitle('Click Here')//alpha codes3
         .setURL(`${omar.avatarURL}`)//alpha codes4
         .setImage(`${omar.avatarURL}`)//alpha codes5
-        .setFooter('Avatar,client.user.avatarURL) //alpha codes6
+        .setFooter('Avatar'client.user.avatarURL) //alpha codes6
       message.channel.sendEmbed(embed);//alpha codes7
     }
 });
