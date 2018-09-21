@@ -822,59 +822,32 @@ if (command == "embed") {
 
 
  client.on('message', message => {
-        var  user = message.mentions.users.first() || message.author;
     if (message.content.startsWith("$avatar")) {
-message.channel.send(`This avatar For ${user} link : ${user.avatarURL}`);
-}
-});
-
-
-
-
-client.on('message', message => {
-    if (message.content.startsWith("$trans")) {
-
-        const translate = require('google-translate-api');
-        const Discord = require('discord.js');
-
-    let toTrans = message.content.split(' ').slice(1);
-    let language;
-
-    language = toTrans[toTrans.length - 2] === 'to' ? toTrans.slice(toTrans.length - 2, toTrans.length)[1].trim() : undefined;
-    if (!language) {
-        return message.reply(`Please supply valid agruments.\n**Example** \`$translate [text] to [language]\``);
-    }
-    let finalToTrans = toTrans.slice(toTrans.length - toTrans.length, toTrans.length - 2).join(' ');
-    translate(finalToTrans, {to: language}).then(res => {
-            message.channel.send({embed: {
-                color: 3447003,
-                author: {
-                  name: 'Dragon\'s translator',
-                  icon_url: client.user.avatarURL
-                },
-                fields: [{
-                    name: "Translator",
-                    value: `**From:** ${res.from.language.iso}\n\`\`\`${finalToTrans}\`\`\`\n**To: **${language}\n\`\`\`${res.text}\`\`\``
-                  }
-                ],
-                timestamp: new Date(),
-                footer: {
-                  icon_url: client.user.avatarURL,
-                  text: "ℳîĐØ
-"
-                }
-              }
-            });
-    }).catch(err => {
-        message.channel.send({
-            embed: {
-                description: '❌ We could not find the supplied language.',
-                color: 0xE8642B
-            }
-        });
-    });
+        if (message.author.bot) return
+        var mentionned = message.mentions.users.first();
+    var omar;
+      if(mentionned){
+          var omar = mentionned;
+      } else {
+          var omar = message.author;
+          
+      }
+        const embed = new Discord.RichEmbed()
+        .setColor("RANDOM")//alpha codes1
+        .setAuthor('Avatar Link :')//alpha codes2
+        .setTitle('Click Here')//alpha codes3
+        .setURL(`${omar.avatarURL}`)//alpha codes4
+        .setImage(`${omar.avatarURL}`)//alpha codes5
+        .setFooter('MiDo,client.user.avatarURL) //alpha codes6
+      message.channel.sendEmbed(embed);//alpha codes7
     }
 });
+
+
+
+
+
+
   
 
 
