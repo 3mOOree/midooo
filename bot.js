@@ -821,7 +821,7 @@ if (command == "embed") {
 });
 
 
- client.on('message', message => {
+lient.on('message', message => {
     if (message.content.startsWith("$avatar")) {
         if (message.author.bot) return
         var mentionned = message.mentions.users.first();
@@ -833,13 +833,13 @@ if (command == "embed") {
           
       }
         const embed = new Discord.RichEmbed()
-        .setColor("RANDOM")//alpha codes1
-        .setAuthor('Avatar Link :')//alpha codes2
-        .setTitle('Click Here')//alpha codes3
-        .setURL(`${omar.avatarURL}`)//alpha codes4
-        .setImage(`${omar.avatarURL}`)//alpha codes5
-        .setFooter('Avatar'client.user.avatarURL) //alpha codes6
-      message.channel.sendEmbed(embed);//alpha codes7
+        .setColor("RANDOM")
+        .setAuthor('Avatar Link :')
+        .setTitle('Click Here')
+        .setURL(`${omar.avatarURL}`)
+        .setImage(`${omar.avatarURL}`)
+        .setFooter('MiDo',client.user.avatarURL) 
+      message.channel.sendEmbed(embed);
     }
 });
 
