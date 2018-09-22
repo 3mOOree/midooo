@@ -856,7 +856,7 @@ if (message.content.startsWith(prefix + 'trans')) {
     
         const embed = new Discord.RichEmbed()
             .setColor("FFFFFF")
-            .setDescription("**ترجمة الكتابة.**\استعمل: `-translate <الكلمة لتبي> <االغة>`");
+            .setDescription("**ترجمة الكتابة.**\استعمل: `$translate <الكلمة لتبي> <االغة>`");
 
         return message.channel.send(embed);
 
@@ -864,7 +864,7 @@ if (message.content.startsWith(prefix + 'trans')) {
 
         if (args.length === undefined) {
 
-            return message.channel.send("**ترجمة الكتابة.**\استعمل: `-translate <الكلمة لتبي> <االغة>`");
+            return message.channel.send("**ترجمة الكتابة.**\استعمل: `$translate <الكلمة لتبي> <االغة>`");
 
         } else {
 
