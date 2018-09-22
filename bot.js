@@ -850,7 +850,7 @@ const math = require('math-expression-evaluator');
 const stripIndents = require('common-tags').stripIndents;
 
 client.on('message', msg => {
-if (msg.content.startsWith( "$cal"')) {
+if (msg.content.startsWith( "$cal" )) {
   let args = msg.content.split(" ").slice(1);
       const question = args.join(' ');
   if (args.length < 1) {
