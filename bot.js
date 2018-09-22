@@ -1,6 +1,6 @@
 const Discord = require("discord.js");
 const client = new Discord.Client();
-
+const prefix = "$"
 
 
 
@@ -864,5 +864,66 @@ if (msg.content.startsWith( "$cal" )) {
 };
 });
 
+
+client.on('message', message => {
+    if (message.author.bot) return;
+     if (message.content === prefix + "help") {
+		 message.channel.send('**تم ارسال الاوامر بالخاص :mailbox_with_mail:**');
+         let helpembed = new Discord.RichEmbed()
+         message.channel.send({embed : helpembed});
+         
+
+ message.author.sendMessage(`
+ 
+╔[❖════════════❖]╗
+             Prefix = ' $ '
+╚[❖════════════❖]╝
+
+╔[❖════════════❖]╗
+             Admin Commands
+╚[❖════════════❖]╝
+
+ ❖ $kick <mention > ➾ kick member from server
+
+ ❖ $ban  <mention > ➾ ban member from server
+
+ ❖ $mute < mention > ➾ mute member
+
+ ❖ $unmute <mention> ➾ unmute member
+
+ ❖ $startdisco ➾ for startdisco role
+  
+ ❖ $bc <message> ➾ message all members in server
+
+ ❖ $role ➾ for help role
+
+╔[❖════════════❖]╗
+            General  Commands
+╚[❖════════════❖]╝
+
+
+❖ $id ➾ your id
+
+❖ $avatar ➾ your avatar account
+
+❖ $ping ➾ to see ping
+ 
+❖ $xo  ➾ for playing xo with ur friend 
+
+❖ $cal ➾ for Calculator
+
+==================================================================
+
+Server support: https://discord.gg/Yk4Z9f
+
+==================================================================
+
+bot invite link: https://discordapp.com/api/oauth2/authorize?client_id=491679470541864961&permissions=8&scope=bot
+==================================================================
+
+`);
+
+    }
+});
 
 client.login(process.env.BOT_TOKEN);
