@@ -706,15 +706,6 @@ client.on('message', message => {
 });
 
 
-
-client.on('message', message => {
-    var args = message.content.split(/[ ]+/)
-    if(message.content.includes('youtube')){
-        message.delete()
-    return message.reply(`** لايمكنك نشر اروابط في هذا اسرفر **`)
-    }
-
-});
  
 client.on('message', message => {
     if(message.content.includes('discord.gg')){
