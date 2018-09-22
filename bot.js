@@ -782,8 +782,6 @@ m3a4x.channel.sendEmbed(Embed11).then(m3a4x => {m3a4x.delete(20000)})
 })
 
 
-var prefix = "$"
-
 client.on('message', message => {
   if (message.author.bot) return;
   if (!message.content.startsWith(prefix)) return;
