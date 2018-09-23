@@ -865,7 +865,7 @@ if (msg.content.startsWith( "$cal" )) {
 client.on("message", message => {
  if (message.content === "$help") {
   const embed = new Discord.RichEmbed()
-  ╔[❖════════════❖]╗
+╔[❖════════════❖]╗
   Prefix = ' $ '
 ╚[❖════════════❖]╝
 
