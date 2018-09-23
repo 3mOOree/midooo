@@ -862,6 +862,7 @@ if (msg.content.startsWith( "$cal" )) {
 };
 });
 
+
 client.on('message', message => {
     if (message.author.bot) return;
      if (message.content === prefix + "help") {
@@ -875,11 +876,11 @@ client.on('message', message => {
 .setDescription(`
  
 ╔[❖════════════❖]╗
-      Prefix = ' $ '
+Prefix   =    ' $ '
 ╚[❖════════════❖]╝
 
 ╔[❖════════════❖]╗
-      Admin Commands
+Admin   ✻  Commands
 ╚[❖════════════❖]╝
 
  ❖ $kick <mention > ➾ kick member from server
@@ -897,19 +898,23 @@ client.on('message', message => {
  ❖ $role ➾ for help role
 
 ╔[❖════════════❖]╗
-   General  Commands
+General  ✻ Commands
 ╚[❖════════════❖]╝
 
 
-❖ $id ➾ your id
+❖ $id ➾ your id // عشان تشوف ايدي حقك
 
-❖ $avatar ➾ your avatar account
+❖ $avatar ➾ your avatar account // عشان تشوف صورت حسابك
 
-❖ $ping ➾ to see ping
+❖ $ping ➾ to see ping // عشان تشوف بنقك
  
-❖ $xo  ➾ for playing xo with ur friend 
+❖ $xo  ➾ for playing xo with ur friend // عشان تلعب اكس اوه مع صديقك
 
-❖ $cal ➾ for Calculator
+❖ $كت تويت ➾ for ask cut tweet // عشان يطلعلك اساله كت تويت
+
+❖ $cal ➾ for Calculator // الاله الحاسبه
+
+❖ $server ➾ for show server info // عشان تشوف احصائيات السيرفر
 
 ==================================================================
 
@@ -924,5 +929,81 @@ bot invite link: https://discordapp.com/api/oauth2/authorize?client_id=491679470
     }
 });
 
+
+client.on('message', message => {
+if (message.content.startsWith('$server')) {
+ message.channel.send(`Here is the different information of **${message.guild.name}**`, {
+        embed: {
+            color: 0xDF9C9D,
+            author: {
+                name: client.user.username,
+                icon_url: client.user.displayAvatarURL
+            },
+            thumbnail: {
+                url: message.guild.iconURL
+            },
+            fields: [{
+                    name: "• name:",
+                    value: `${message.guild.name}`,
+                    inline: true
+                }, {
+                    name: "• ID:",
+                    value: `${message.guild.id}`,
+                    inline: true
+                }, {
+                    name: "• Crated at:",
+                    value: (message.guild.createdAt).format("LL"),
+                    inline: true
+                }, {
+                    name: "• Owner:",
+                    value: message.guild.owner.user.tag,
+                    inline: true
+                }, {
+                    name: "• Members:",
+                    value: `${message.guild.memberCount}`,
+                    inline: true
+                }, {
+                    name: "• Last members:",
+                    value: `${Array.from(message.channel.guild.members.values()).sort((a, b) => b.joinedAt - a.joinedAt).map(m => `<@!${m.id}>`).splice(0, 1)}`,
+                    inline: true
+                }, {
+                    name: "• Channel",
+                    value: `**${message.guild.channels.filter(channel => channel.type === 'text').size}** text - **${message.guild.channels.filter(channel => channel.type === 'voice').size}** audio`,
+                    inline: true
+                }, {
+                    name: "• AFK channel",
+                    value: `${message.guild.afkChannel}`,
+                    inline: true
+                }, {
+                    name: `• Roles - **${message.channel.guild.roles.size}**:`,
+                    value: message.guild.roles.array().map(g => g).join(', '),
+                    inline: true
+                }, {
+                    name: `• Emojies - **${message.channel.guild.emojis.size}**:`,
+                    value: `${message.guild.emojis.map(e => e).join(', ')}`,
+                    inline: true
+                }
+            ]
+        }
+    })
+
+
+
+
+
+}
+});
+
+
+
+client.on('message', message => {
+    if(message.channel.type === 'dm') {
+        var guildID = '463274058520330240'; // <=============== ايدي السيرفر حقك
+        if(message.content.includes('discord.gg/')) {
+            var member = client.guilds.find(g => g.id === guildID).members.find(m => m.id === message.author.id);
+            member.ban({ reason: 'ADS In Private.' }).catch();
+        }
+    }
+});
 
 client.login(process.env.BOT_TOKEN);
