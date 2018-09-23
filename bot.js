@@ -862,49 +862,59 @@ if (msg.content.startsWith( "$cal" )) {
 };
 });
 
-client.on('message', message => {
-    if (message.author.bot) return;
-     if (message.content === prefix + "help") {
-         message.channel.send('**تم ارسال الاوامر بالخاص :mailbox_with_mail:**');
-         
-         
+client.on("message", message => {
+ if (message.content === "$help") {
+  const embed = new Discord.RichEmbed()
+  ╔[❖════════════❖]╗
+  Prefix = ' $ '
+╚[❖════════════❖]╝
 
- message.author.sendMessage(`
- 
 ╔[❖════════════❖]╗
-             Prefix = ' $ '
+  Admin Commands
 ╚[❖════════════❖]╝
+
+❖ $kick <mention > ➾ kick member from server
+
+❖ $ban  <mention > ➾ ban member from server
+
+❖ $mute < mention > ➾ mute member
+
+❖ $unmute <mention> ➾ unmute member
+
+❖ $startdisco ➾ for startdisco role
+
+❖ $bc <message> ➾ message all members in server
+
+❖ $role ➾ for help role
+
 ╔[❖════════════❖]╗
-             Admin Commands
+ General  Commands
 ╚[❖════════════❖]╝
- ❖ $kick <mention > ➾ kick member from server
- ❖ $ban  <mention > ➾ ban member from server
- ❖ $mute < mention > ➾ mute member
- ❖ $unmute <mention> ➾ unmute member
- ❖ $startdisco ➾ for startdisco role
-  
- ❖ $bc <message> ➾ message all members in server
- ❖ $role ➾ for help role
-╔[❖════════════❖]╗
-            General  Commands
-╚[❖════════════❖]╝
-❖ $id ➾ your id // عشان تشوف ايدي حقك
-❖ $avatar ➾ your avatar account // عشان تشوف صورة حسابك ورابطها
-❖ $ping ➾ to see ping // عشان تشوف بنق حقك 
- 
-❖ $xo  ➾ for playing xo with ur friend // لعبة اكس اوه مع صديقك او مع نفسك
-❖ $cal ➾ for Calculator // الاله حاسبه 
-❖ $say ➾ For Repeat your words bot // عشان البوت يكرر كلامك 
+
+
+❖ $id ➾ your id
+
+❖ $avatar ➾ your avatar account
+
+❖ $ping ➾ to see ping
+
+❖ $xo  ➾ for playing xo with ur friend 
+
+❖ $cal ➾ for Calculator
+
 ==================================================================
+
 Server support: https://discord.gg/Yk4Z9f
+
 ==================================================================
+
 bot invite link: https://discordapp.com/api/oauth2/authorize?client_id=491679470541864961&permissions=8&scope=bot
 ==================================================================
-`);
-let helpembed = new Discord.RichEmbed()
- message.author.sendMessage({embed : helpembed});
 
-    }
+  message.channel.send(`:white_check_mark: | Check Your DM`)
+  message.author.send({embed});
+ }
 });
+
 
 client.login(process.env.BOT_TOKEN);
