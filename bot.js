@@ -862,19 +862,17 @@ if (msg.content.startsWith( "$cal" )) {
 };
 });
 
-const embed = new Discord.RichEmbed()
 client.on('message', message => {
     if (message.author.bot) return;
      if (message.content === prefix + "help") {
          message.channel.send('**تم ارسال الاوامر بالخاص :mailbox_with_mail:**');
-         let helpembed = new Discord.RichEmbed()
-         message.channel.send({embed : helpembed});
+  const embed = new Discord.RichEmbed()
          
     
          
 
-
- message.author.sendMessage(`
+      .setColor("RANDOM")
+.setDescription(`
  
 ╔[❖════════════❖]╗
              Prefix = ' $ '
@@ -921,9 +919,8 @@ Server support: https://discord.gg/Yk4Z9f
 
 bot invite link: https://discordapp.com/api/oauth2/authorize?client_id=491679470541864961&permissions=8&scope=bot
 ==================================================================
-message.author.sendEmbed(embed)
 `);
-
+  message.author.send({embed});
     }
 });
 
