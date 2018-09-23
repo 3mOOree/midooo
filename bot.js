@@ -875,11 +875,11 @@ client.on('message', message => {
 .setDescription(`
  
 ╔[❖════════════❖]╗
-              Prefix = ' $ '
+      Prefix = ' $ '
 ╚[❖════════════❖]╝
 
 ╔[❖════════════❖]╗
-              Admin Commands
+      Admin Commands
 ╚[❖════════════❖]╝
 
  ❖ $kick <mention > ➾ kick member from server
@@ -897,7 +897,7 @@ client.on('message', message => {
  ❖ $role ➾ for help role
 
 ╔[❖════════════❖]╗
-             General  Commands
+   General  Commands
 ╚[❖════════════❖]╝
 
 
