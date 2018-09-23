@@ -914,8 +914,6 @@ General  ✻ Commands
 
 ❖ $cal ➾ for Calculator // الاله الحاسبه
 
-❖ $server ➾ for show server info // عشان تشوف احصائيات السيرفر
-
 ==================================================================
 
 Server support: https://discord.gg/Yk4Z9f
@@ -930,69 +928,6 @@ bot invite link: https://discordapp.com/api/oauth2/authorize?client_id=491679470
 });
 
 
-client.on('message', message => {
-if (message.content.startsWith('$server')) {
- message.channel.send(`Here is the different information of **${message.guild.name}**`, {
-        embed: {
-            color: 0xDF9C9D,
-            author: {
-                name: client.user.username,
-                icon_url: client.user.displayAvatarURL
-            },
-            thumbnail: {
-                url: message.guild.iconURL
-            },
-            fields: [{
-                    name: "• name:",
-                    value: `${message.guild.name}`,
-                    inline: true
-                }, {
-                    name: "• ID:",
-                    value: `${message.guild.id}`,
-                    inline: true
-                }, {
-                    name: "• Crated at:",
-                    value: (message.guild.createdAt).format("LL"),
-                    inline: true
-                }, {
-                    name: "• Owner:",
-                    value: message.guild.owner.user.tag,
-                    inline: true
-                }, {
-                    name: "• Members:",
-                    value: `${message.guild.memberCount}`,
-                    inline: true
-                }, {
-                    name: "• Last members:",
-                    value: `${Array.from(message.channel.guild.members.values()).sort((a, b) => b.joinedAt - a.joinedAt).map(m => `<@!${m.id}>`).splice(0, 1)}`,
-                    inline: true
-                }, {
-                    name: "• Channel",
-                    value: `**${message.guild.channels.filter(channel => channel.type === 'text').size}** text - **${message.guild.channels.filter(channel => channel.type === 'voice').size}** audio`,
-                    inline: true
-                }, {
-                    name: "• AFK channel",
-                    value: `${message.guild.afkChannel}`,
-                    inline: true
-                }, {
-                    name: `• Roles - **${message.channel.guild.roles.size}**:`,
-                    value: message.guild.roles.array().map(g => g).join(', '),
-                    inline: true
-                }, {
-                    name: `• Emojies - **${message.channel.guild.emojis.size}**:`,
-                    value: `${message.guild.emojis.map(e => e).join(', ')}`,
-                    inline: true
-                }
-            ]
-        }
-    })
-
-
-
-
-
-}
-});
 
 
 
