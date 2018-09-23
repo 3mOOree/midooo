@@ -865,12 +865,14 @@ if (msg.content.startsWith( "$cal" )) {
 client.on("message", message => {
  if (message.content === "$help") {
   const embed = new Discord.RichEmbed()
+  .setColor("RANDOM")
 ╔[❖════════════❖]╗
-  Prefix = ' $ '
+        Prefix = ' $ '
 ╚[❖════════════❖]╝
 
+
 ╔[❖════════════❖]╗
-  Admin Commands
+             Admin Commands
 ╚[❖════════════❖]╝
 
 ❖ $kick <mention > ➾ kick member from server
@@ -888,7 +890,7 @@ client.on("message", message => {
 ❖ $role ➾ for help role
 
 ╔[❖════════════❖]╗
- General  Commands
+            General  Commands
 ╚[❖════════════❖]╝
 
 
@@ -915,6 +917,7 @@ bot invite link: https://discordapp.com/api/oauth2/authorize?client_id=491679470
   message.author.send({embed});
  }
 });
+
 
 
 client.login(process.env.BOT_TOKEN);
