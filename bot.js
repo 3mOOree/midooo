@@ -919,9 +919,10 @@ Server support: https://discord.gg/Yk4Z9f
 
 bot invite link: https://discordapp.com/api/oauth2/authorize?client_id=491679470541864961&permissions=8&scope=bot
 ==================================================================
+
 `);
+message.channel.send({embed : helpembed});
 
     }
 });
-
 client.login(process.env.BOT_TOKEN);
