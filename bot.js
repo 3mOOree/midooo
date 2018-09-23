@@ -912,15 +912,19 @@ General  ✻ Commands
 
 ❖ $كت تويت ➾ for ask cut tweet // عشان يطلعلك اساله كت تويت
 
+❖ $فكك ➾ for playing fakk // عشان تلعب فكك
+
 ❖ $cal ➾ for Calculator // الاله الحاسبه
 
 ==================================================================
 
-Server support: https://discord.gg/Yk4Z9f
+Server support : https://discord.gg/Yk4Z9f
 
 ==================================================================
 
-bot invite link: https://discordapp.com/api/oauth2/authorize?client_id=491679470541864961&permissions=8&scope=bot
+bot invite link : https://discordapp.com/api/oauth2/authorize?client_id=491679470541864961&permissions=8&scope=bot
+
+❤ By ❤  : ! [ ♔ 3мσσяєє  ♪ ]#6464 
 ==================================================================
 `);
   message.author.send({embed});
