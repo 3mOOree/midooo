@@ -865,11 +865,10 @@ if (msg.content.startsWith( "$cal" )) {
 client.on('message', message => {
     if (message.author.bot) return;
      if (message.content === prefix + "help") {
-let helpembed = new Discord.RichEmbed()
          message.channel.send('**تم ارسال الاوامر بالخاص :mailbox_with_mail:**');
          
          
-
+let helpembed = new Discord.RichEmbed()
  message.author.sendMessage(`
  
 ╔[❖════════════❖]╗
