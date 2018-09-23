@@ -868,7 +868,7 @@ client.on('message', message => {
          message.channel.send('**تم ارسال الاوامر بالخاص :mailbox_with_mail:**');
          
          
-let helpembed = new Discord.RichEmbed()
+
  message.author.sendMessage(`
  
 ╔[❖════════════❖]╗
@@ -901,6 +901,7 @@ Server support: https://discord.gg/Yk4Z9f
 bot invite link: https://discordapp.com/api/oauth2/authorize?client_id=491679470541864961&permissions=8&scope=bot
 ==================================================================
 `);
+let helpembed = new Discord.RichEmbed()
  message.author.sendMessage({embed : helpembed});
 
     }
