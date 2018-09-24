@@ -8,6 +8,7 @@
   },
   "dependencies": {
      "math-expression-evaluator":"1.2.17",
+     "canvas": "^1.6.11",
     "common-tags":"1.7.2",
    "discord.js": "^11.3.2",
     "discord.js-musicbot-addon": "^1.10.3",
