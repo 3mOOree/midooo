@@ -2,9 +2,7 @@ const Discord = require("discord.js");
 const client = new Discord.Client();
 const prefix = "$"
 const UserBlocked = new Set();
-const fs = require("fs")
-const games = JSON.parse(fs.readFileSync("./games.json", "utf8"));
-const Canvas = require("canvas")
+
 
 
 
@@ -921,7 +919,7 @@ General  ✻ Commands
 
 ❖ $say ➾ for Repeat your words whith bot // بوت يكرر كلامك
 
-❖ $say ➾ for show ur profile // عشان تشوف البروفايل حقك
+❖ اخر شي في ترحيب بالبوت 
 
 ==================================================================
 
@@ -1031,130 +1029,24 @@ var fkk =[
 });
 
 
-client.on("message", message => {
-  if (message.author.bot) return;
-	if(!message.channel.guild) return;       
-if (message.content.startsWith("$profile")) {
-                               let user = message.mentions.users.first();
-         var men = message.mentions.users.first();
-            var heg;
-            if(men) {
-                heg = men
-            } else {
-                heg = message.author
-            }
-          var mentionned = message.mentions.members.first();
-             var h;
-            if(mentionned) {
-                h = mentionned
-            } else {
-                h = message.member
-            }
-            var ment = message.mentions.users.first();
-            var getvalueof;
-            if(ment) {
-              getvalueof = ment;
-            } else {
-              getvalueof = message.author;
-            }//var ghost = tf 3lek xD
-   var mentionned = message.mentions.users.first();
 
-    var client;
-      if(mentionned){
-          var client = mentionned;
-      } else {
-          var client = message.author;
-          
-      }
-  const w = ['./p1.png'];
-if (!games[getvalueof.id]) games[getvalueof.id] = {wins: 0,loses: 0,points: 0,total: 0,credits: 100,level: 1,};          
-            let Image = Canvas.Image,
-            canvas = new Canvas(300, 300),
-            ctx = canvas.getContext('2d');       
-      fs.readFile(`${dataPro[getvalueof.id].wallSrc}`, function (err, Background) {
-          fs.readFile(`${w[0]}`, function (err, Background) {
-          if (err) return console.log(err);
-          let BG = Canvas.Image;
-          let ground = new Image;
-          ground.src = Background;
-          ctx.drawImage(ground, 0, 0, 297, 305);
-});
-          if (err) return console.log(err);
-          let BG = Canvas.Image;
-          let ground = new Image;
-          ground.src = Background;
-          ctx.drawImage(ground, 0, 0, 300, 305);
-});
+client.on('guildMemberAdd', Sal => { //By Salto7#4595
+    var embed = new Discord.RichEmbed()
+    .setAuthor(Sal.user.username, Sal.user.avatarURL)
+    .setThumbnail(Sal.user.avatarURL)
+    .setImage('http://live-timely-4jepdssgmc.time.ly/wp-content/uploads/2018/08/welcomeEvents.jpg') //هنا حط الصوره الي تبيها
+    .setTitle('عضو جديد!')
+    .setDescription('مرحبا بك بالسيرفر')
+    .addField('``ايدي العضو``:',"" +  Sal.user.id, true)
+    .addField('``تاق العضو``', Sal.user.discriminator, true)
+    .addField('``تم الانشاء في``', Sal.user.createdAt, true)
+    .addField(' 👤  انت رقم',`**[ ${Sal.guild.memberCount} ]**`,true)
+    .setColor('RANDOM')
+    .setFooter(Sal.guild.name, Sal.guild.iconURL, true)
+    var channel =Sal.guild.channels.find('name', '👋『welcome』👋') // هنا حط اسم الروم الي تبيه يكتب فيه
+    if (!channel) return;
+    channel.send({embed : embed});
+    });
 
-
-
-                let url = getvalueof.displayAvatarURL.endsWith(".webp") ? getvalueof.displayAvatarURL.slice(5, -20) + ".png" : getvalueof.displayAvatarURL;
-                jimp.read(url, (err, ava) => {
-                    if (err) return console.log(err);
-                    ava.getBuffer(jimp.MIME_PNG, (err, buf) => {
-                        if (err) return console.log(err);
-                        
-
-                        //Avatar
-                       let Avatar = Canvas.Image;
-                        let ava = new Avatar;
-                        ava.src = buf;
-                     ctx.drawImage(ava, 8, 43, 80, 85); // احداثيات صورتك
-                        
-                        //ur name
-                        ctx.font = 'bold 16px Arial'; // حجم الخط و نوعه
-                        ctx.fontSize = '40px'; // عرض الخط
-                        ctx.fillStyle = "#000000"; // لون الخط
-                        ctx.textAlign = "left"; // محاذا ة النص
-                        ctx.fillText(`${getvalueof.username}`, 100, 125) // احداثيات اسمك          
-
-                         //bord
-                        ctx.font = "regular 12px Cairo" // نوع الخط وحجمه
-                        ctx.fontSize = '50px'; // عرض الخط
-                        ctx.fillStyle = "#f0ff00" // لون الخط    
-                        ctx.textAlign = "left"; // محاذا ة النص
-                        ctx.fillText(`Soon...`, 170, 198) // احداثيات ترتيبك
-                        
-                        //credit
-                        ctx.font = "bold 10px Arial" // نوع الخط وحجمه
-                        ctx.fontSize = '10px'; // عرض الخط
-                        ctx.fillStyle = '#FFFFFF' // لون الخط  
-                        ctx.textAlign = "left"; // محاذا ة النص
-                        ctx.fillText(`$ ${games[getvalueof.id].credits}`, 156, 163) // احداثيات المصاري                        
-                        
-                        //poits
-                        ctx.font = "bold 13px Arial" // ن
-                        ctx.fontSize = '10px'; // عرض الخطوع الخط وحجمه
-                        ctx.fillStyle = "#FFFFFF" // لون الخط 
-                        ctx.textAlign = "left"; // محاذا ة النص
-                        ctx.fillText(`${profile[getvalueof.id].points}`, 173, 182) // احداثيات النقاط
-
-                        //Level
-                        ctx.font = "bold 27px Arial" // نوع الخط و حجمه
-                        ctx.fontSize = '50px'; // عرض الخط
-                        ctx.fillStyle = "#FFFFFF" // لون الخط
-                        ctx.textAlign = "left"; // محاذا ة النص
-                        ctx.fillText(`${profile[getvalueof.id].level}`, 30, 200) // احداثيات اللفل
-                       
-                        //info
-                        ctx.font = "blod 13px Arial" // ن
-                        ctx.fontSize = '10px'; // عرض الخطوع الخط وحجمه
-                        ctx.fillStyle = "#FFFFFF" // لون الخط 
-                        ctx.textAlign = "left"; // محاذا ة النص
-                        ctx.fillText(`${profile[getvalueof.id].info}`, 118, 40) // احداثيات النقاط
-
-                        // REP
-                        ctx.font = "bold 27px Arial";
-                        ctx.fontSize = "100px";
-                        ctx.fillStyle = "#FFFFFF";
-                        ctx.textAlign = "left";
-                        ctx.fillText(`❤️${profile[getvalueof.id].rep}`, 18,270)
-                      
-message.channel.sendFile(canvas.toBuffer())
-})
-})
-}
-
-});
 
 client.login(process.env.BOT_TOKEN);
