@@ -4,7 +4,7 @@ const prefix = "$"
 const UserBlocked = new Set();
 const fs = require("fs")
 const games = JSON.parse(fs.readFileSync("./games.json", "utf8"));
-
+const Canvas = require("canvas")
 
 
 
