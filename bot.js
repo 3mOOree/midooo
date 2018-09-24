@@ -2,6 +2,7 @@ const Discord = require("discord.js");
 const client = new Discord.Client();
 const prefix = "$"
 const UserBlocked = new Set();
+const fs = require("fs")
 const games = JSON.parse(fs.readFileSync("./games.json", "utf8"));
 
 
