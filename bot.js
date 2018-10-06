@@ -8,7 +8,7 @@ const UserBlocked = new Set();
 
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
-client.user.setGame(`$help ForHelp||By ! [ ♔ 3мσσяєє ♪ ]`,"http://twitch.tv/Mohamed192837465")
+client.user.setGame(`$help ForHelp || By ! [ ̃̍͋♔ 3̶͘mOOreeèͤ̚ ̸̛͢♪ ]҉`,"http://twitch.tv/Mohamed192837465")
   console.log('')
   console.log('')
   console.log('╔[═════════════════════════════════════════════════════════════════]╗')
