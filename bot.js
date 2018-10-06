@@ -922,13 +922,12 @@ General  ✻ Commands
 
 ==================================================================
 
-Server support : https://discord.gg/Yk4Z9f
+Server support : https://discord.gg/Ze7wrG
 
 ==================================================================
 
-bot invite link : https://discordapp.com/api/oauth2/authorize?client_id=491679470541864961&permissions=8&scope=bot
-
-❤ By ❤  : ! [ ♔ 3мσσяєє  ♪ ]#6464 
+bot invite link : https://discordapp.com/api/oauth2/authorize?client_id=498107917615235082&permissions=8&scope=bot
+❤ By ❤  : ! [ ̃̍͋♔ 3̶͘mOOreeèͤ̚ ̸̛͢♪ ]҉#6464  
 ==================================================================
 `);
   message.author.send({embed});
